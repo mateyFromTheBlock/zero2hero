@@ -4,7 +4,7 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { getConfig } from "../config";
 import Loading from "../components/Loading";
 
-export const ExternalApiComponent = () => {
+export const LoginHistoryComponent = () => {
   const [logins, setLogins] = useState([])
 
   const {
@@ -66,6 +66,6 @@ export const ExternalApiComponent = () => {
   );
 };
 
-export default withAuthenticationRequired(ExternalApiComponent, {
+export default withAuthenticationRequired(LoginHistoryComponent, {
   onRedirecting: () => <Loading />,
 });

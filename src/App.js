@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./views/Home";
 import Profile from "./views/Profile";
-import ExternalApi from "./views/ExternalApi";
+import ExternalApi from "./views/LoginHistory";
 import { useAuth0 } from "@auth0/auth0-react";
 import history from "./utils/history";
 
@@ -38,7 +38,6 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <Route path="/profile" component={Profile} />
             <Route path="/history" component={ExternalApi} />
-            <Route path="/test" component={() => <h1>TEST</h1>} />
           </Switch>
         </Container>
         <Footer />

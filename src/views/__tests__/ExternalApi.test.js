@@ -1,5 +1,5 @@
 import React from "react";
-import { ExternalApiComponent } from "../ExternalApi";
+import { LoginHistoryComponent } from "../LoginHistory";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -27,13 +27,13 @@ describe("The ExternalApi component", () => {
   });
 
   it("renders", () => {
-    render(<ExternalApiComponent />);
+    render(<LoginHistoryComponent />);
   });
 
   it("makes a call to the API when the button is clicked", async () => {
     fetch.mockResponseOnce(JSON.stringify({ msg: "This is the API result" }));
 
-    render(<ExternalApiComponent />);
+    render(<LoginHistoryComponent />);
     fireEvent.click(screen.getByText("Ping API"));
 
     await waitFor(() => screen.getByTestId("api-result"));
@@ -54,7 +54,7 @@ describe("The ExternalApi component", () => {
       }),
     }));
 
-    render(<ExternalApiComponent />);
+    render(<LoginHistoryComponent />);
 
     expect(
       await screen.findByText(/You can't call the API at the moment/)
