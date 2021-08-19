@@ -12,24 +12,28 @@ export const ExternalApiComponent = () => {
     logout
   } = useAuth0();
 
-  useEffect(async () => {
-    try {
-      if (!getAccessTokenSilently) return;
+  useEffect(() => {
+     const fetchData = async () => {
+      try {
+        if (!getAccessTokenSilently) return;
 
-      const { apiOrigin = "https://vast-wave-47133.herokuapp.com" } = getConfig();
-      const token = await getAccessTokenSilently();
+        const { apiOrigin = "https://vast-wave-47133.herokuapp.com" } = getConfig();
+        const token = await getAccessTokenSilently();
 
-      const response = await fetch(`${apiOrigin}/api/external`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+        const response = await fetch(`${apiOrigin}/api/external`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-      const responseData = await response.json();
-      setLogins(responseData.logins)
-    } catch (error) {
-      console.error(error)
+        const responseData = await response.json();
+        setLogins(responseData.logins)
+      } catch (error) {
+        console.error(error)
+      }
     }
+
+    fetchData();
   }, [getAccessTokenSilently]);
 
   const logoutWithRedirect = () =>
