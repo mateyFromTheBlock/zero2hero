@@ -49,7 +49,6 @@ app.get("/api/external", checkJwt, async (req, res) => {
     const email = _user['https://example.com/email']
     const dbModel = mongoose.model('User');
     const user = await dbModel.findOne({ email });
-    // const user = await dbModel.findOneAndUpdate({ email }, { $push: { logins: { $each: [new Date()] , $slice: -30 } } }, { upsert: true });
 
     res.json(user);
   } catch (e) {
@@ -58,7 +57,7 @@ app.get("/api/external", checkJwt, async (req, res) => {
   }
 });
 
-const dbUrl = 'mongodb+srv://zero2herouser:zero2heropass@cluster0.stmd8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const dbUrl = process.env.DB_URL;
 const options = {
   useCreateIndex: true,
   useNewUrlParser: true,
