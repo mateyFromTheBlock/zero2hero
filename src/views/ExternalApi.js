@@ -20,7 +20,7 @@ export const ExternalApiComponent = () => {
 
   useEffect(() => {
     callApi()
-  }, [])
+  })
 
   const callApi = async () => {
     try {
