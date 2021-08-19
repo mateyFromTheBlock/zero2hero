@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button, Alert } from "reactstrap";
+import { Button } from "reactstrap";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { getConfig } from "../config";
 import Loading from "../components/Loading";
 
 export const ExternalApiComponent = () => {
-  const { apiOrigin = "http://localhost:3001" } = getConfig();
+  const { apiOrigin = "https://vast-wave-47133.herokuapp.com" } = getConfig();
 
   const [state, setState] = useState({
     showResult: false,
