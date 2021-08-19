@@ -10,7 +10,7 @@ const User = require('./models/user');
 
 const app = express();
 
-const port = process.env.API_PORT || 3001;
+const port = process.env.PORT || 3001;
 const appPort = process.env.SERVER_PORT || 3000;
 const appOrigin = authConfig.appOrigin || `http://localhost:${appPort}`;
 
@@ -28,7 +28,7 @@ if (
 
 app.use(morgan("dev"));
 app.use(helmet());
-app.use(cors({ origin: appOrigin }));
+app.use(cors());
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
