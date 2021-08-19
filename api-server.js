@@ -6,7 +6,6 @@ const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 const mongoose = require("mongoose");
 const authConfig = require("./src/auth_config.json");
-const User = require('./models/user');
 
 const app = express();
 
