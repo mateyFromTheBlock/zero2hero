@@ -21,7 +21,7 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
-  redirectUri: 'https://master--modest-gates-abde4a.netlify.app/history',
+  redirectUri: `${window.location.origin}/history`,
   onRedirectCallback,
 };
 
