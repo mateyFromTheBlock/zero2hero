@@ -21,7 +21,7 @@ const providerConfig = {
   domain: config.domain,
   clientId: config.clientId,
   ...(config.audience ? { audience: config.audience } : null),
-  redirectUri: 'http://localhost:3000/history',
+  redirectUri: 'https://611e7a9a6ac5de0008b01bb9--modest-gates-abde4a.netlify.app/history',
   onRedirectCallback,
 };
 
