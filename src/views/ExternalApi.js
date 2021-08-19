@@ -5,25 +5,18 @@ import { getConfig } from "../config";
 import Loading from "../components/Loading";
 
 export const ExternalApiComponent = () => {
-  const { apiOrigin = "https://vast-wave-47133.herokuapp.com" } = getConfig();
-
-  const [state, setState] = useState({
-    showResult: false,
-    apiMessage: "",
-    error: null,
-  });
+  const [logins, setLogins] = useState([])
 
   const {
     getAccessTokenSilently,
     logout
   } = useAuth0();
 
-  useEffect(() => {
-    callApi()
-  })
-
-  const callApi = async () => {
+  useEffect(async () => {
     try {
+      if (!getAccessTokenSilently) return;
+
+      const { apiOrigin = "https://vast-wave-47133.herokuapp.com" } = getConfig();
       const token = await getAccessTokenSilently();
 
       const response = await fetch(`${apiOrigin}/api/external`, {
@@ -33,18 +26,11 @@ export const ExternalApiComponent = () => {
       });
 
       const responseData = await response.json();
-      setState({
-        ...state,
-        showResult: true,
-        user: responseData
-      });
+      setLogins(responseData.logins)
     } catch (error) {
-      setState({
-        ...state,
-        error: error.error,
-      });
+      console.error(error)
     }
-  };
+  }, [getAccessTokenSilently]);
 
   const logoutWithRedirect = () =>
     logout({
@@ -57,7 +43,7 @@ export const ExternalApiComponent = () => {
         <h1>Your login history:</h1>
         <ul>
           {
-            state.user && state.user.logins.map((date) => {
+            logins.map((date) => {
               const _date = new Date(date)
               return <li key={date}>{ `${_date.toLocaleString('en-us', {  weekday: 'long' })},  ${_date.toLocaleString('en-GB')}` }</li>
             })
